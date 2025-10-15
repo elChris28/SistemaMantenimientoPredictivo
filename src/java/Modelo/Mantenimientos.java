@@ -28,7 +28,7 @@ public class Mantenimientos {
         this.descripcion = descripcion;
         this.fecha = fecha;
         this.kilometraje = kilometraje;
-        this.costo = costo;
+        this.costo = costo; 
         this.estado = estado;
         this.proximoMantenimiento = proximoMantenimiento;
     }
