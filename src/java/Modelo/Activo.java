@@ -9,7 +9,6 @@ package Modelo;
  * @author kristhor
  */
 public class Activo {
-    private int idRaih;
     private int idActivo;
     private String placa;
     private String codigoInterno;
