@@ -8,20 +8,24 @@ package Modelo;
  *
  * @author Raidth
  */
-public class Usuarios {
+public class Usuario {
     private int idUsuario;
     private String nombre;
     private String correo;
     private String password;
     private int idRol;
+    private Roles rol; // referencia al objeto rol
     private String fechaRegistro;
+    
+    public Usuario() {}
 
-    public Usuarios(int idUsuario, String nombre, String correo, String password, int idRol, String fechaRegistro) {
+    public Usuario(int idUsuario, String nombre, String correo, String password, int idRol, Roles rol, String fechaRegistro) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.correo = correo;
         this.password = password;
         this.idRol = idRol;
+        this.rol = rol;
         this.fechaRegistro = fechaRegistro;
     }
 
@@ -65,6 +69,14 @@ public class Usuarios {
         this.idRol = idRol;
     }
 
+    public Roles getRol() {
+        return rol;
+    }
+
+    public void setRol(Roles rol) {
+        this.rol = rol;
+    }
+
     public String getFechaRegistro() {
         return fechaRegistro;
     }
@@ -72,5 +84,5 @@ public class Usuarios {
     public void setFechaRegistro(String fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
-    
+
 }

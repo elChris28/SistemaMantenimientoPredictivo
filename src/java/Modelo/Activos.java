@@ -8,7 +8,7 @@ package Modelo;
  *
  * @author kristhor
  */
-public class Activo {
+public class Activos {
     private int idActivo;
     private String placa;
     private String codigoInterno;
@@ -22,7 +22,7 @@ public class Activo {
     private String estado;
     private String fechaRegistro;
 
-    public Activo(int idActivo, String placa, String codigoInterno, String nombre, int idTipoActivo, String marca, String modelo, int anio, int capacidadPasajeros, double kilometrajeActual, String estado, String fechaRegistro) {
+    public Activos(int idActivo, String placa, String codigoInterno, String nombre, int idTipoActivo, String marca, String modelo, int anio, int capacidadPasajeros, double kilometrajeActual, String estado, String fechaRegistro) {
         this.idActivo = idActivo;
         this.placa = placa;
         this.codigoInterno = codigoInterno;

@@ -8,12 +8,12 @@ package Modelo;
  *
  * @author Raidth
  */
-public class TipoAlertas {
+public class TiposAlertas {
     private int idTipoAlerta;
     private String nombreTipo;
     private String prioridad;
 
-    public TipoAlertas(int idTipoAlerta, String nombreTipo, String prioridad) {
+    public TiposAlertas(int idTipoAlerta, String nombreTipo, String prioridad) {
         this.idTipoAlerta = idTipoAlerta;
         this.nombreTipo = nombreTipo;
         this.prioridad = prioridad;

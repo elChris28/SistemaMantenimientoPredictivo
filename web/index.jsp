@@ -25,18 +25,18 @@
     <div class="card shadow login-card p-4">
         <h3 class="text-center mb-4">Plataforma de Mantenimiento Predictivo</h3>
 
-        <form action="LoginServlet" method="post">
-            <div class="mb-3">
-                <label class="form-label">Usuario</label>
-                <input type="text" id="usuario" name="usuario" class="form-control" required>
+        <form action="${pageContext.request.contextPath}/LoginServlet" method="post">
+            <div class="form-group">
+                <label for="correo">Correo:</label>
+                <input type="text" id="correo" name="correo" class="form-control" required>
             </div>
 
-            <div class="mb-3">
-                <label class="form-label">Contraseña</label>
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
                 <input type="password" id="password" name="password" class="form-control" required>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+            <button type="submit" class="btn btn-primary">Iniciar sesión</button>
         </form>
         
         <p style="color:red;">

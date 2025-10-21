@@ -24,12 +24,12 @@
     boolean accedeAdmin = requestURI.contains("/vistasAdmin/");
     boolean accedeEmpleado = requestURI.contains("/vistasEmpleado/");
 
-    if ("admin".equals(rol) && accedeEmpleado) {
+    if ("administrador".equals(rol) && accedeEmpleado) {
         response.sendRedirect(contextPath + "/vistasAdmin/admin.jsp");
         return;
     }
 
-    if ("empleado".equals(rol) && accedeAdmin) {
+    if ("conductor".equals(rol) && accedeAdmin) {
         response.sendRedirect(contextPath + "/vistasEmpleado/empleadoMaquinas.jsp");
         return;
     }
