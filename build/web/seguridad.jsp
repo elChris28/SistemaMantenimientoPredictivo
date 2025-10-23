@@ -14,7 +14,7 @@
         response.sendRedirect(contextPath + "/index.jsp");
         return;
     }
-
+a
     // Obtener rol (numérico)
     int idRol = (int) sesion.getAttribute("idRol");
 
