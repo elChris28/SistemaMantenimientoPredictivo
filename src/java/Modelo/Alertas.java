@@ -4,29 +4,33 @@
  */
 package Modelo;
 
+import java.security.Timestamp;
+
 /**
  *
  * @author Raidth
  */
-public class Alertas {
+public class alertas {
     private int idAlerta;
-    private int idActivo;
-    private int idTipoAlerta;
+    private int idVehiculo;
+    private int idHerramienta;
+    private int idUsuario;
+    private String tipo;
     private String mensaje;
+    private Timestamp fechaGeneracion;
     private String estado;
-    private int idUsuarioResponsable;
-    private String fechaCreacion;
 
-      public Alertas(int idAlerta, int idActivo, int idTipoAlerta, String mensaje, String estado, int idUsuarioResponsable, String fechaCreacion) {
+    public alertas(int idAlerta, int idVehiculo, int idHerramienta, int idUsuario, String tipo, String mensaje, Timestamp fechaGeneracion, String estado) {
         this.idAlerta = idAlerta;
-        this.idActivo = idActivo;
-        this.idTipoAlerta = idTipoAlerta;
+        this.idVehiculo = idVehiculo;
+        this.idHerramienta = idHerramienta;
+        this.idUsuario = idUsuario;
+        this.tipo = tipo;
         this.mensaje = mensaje;
+        this.fechaGeneracion = fechaGeneracion;
         this.estado = estado;
-        this.idUsuarioResponsable = idUsuarioResponsable;
-        this.fechaCreacion = fechaCreacion;
     }
-    
+
     public int getIdAlerta() {
         return idAlerta;
     }
@@ -35,20 +39,36 @@ public class Alertas {
         this.idAlerta = idAlerta;
     }
 
-    public int getIdActivo() {
-        return idActivo;
+    public int getIdVehiculo() {
+        return idVehiculo;
     }
 
-    public void setIdActivo(int idActivo) {
-        this.idActivo = idActivo;
+    public void setIdVehiculo(int idVehiculo) {
+        this.idVehiculo = idVehiculo;
     }
 
-    public int getIdTipoAlerta() {
-        return idTipoAlerta;
+    public int getIdHerramienta() {
+        return idHerramienta;
     }
 
-    public void setIdTipoAlerta(int idTipoAlerta) {
-        this.idTipoAlerta = idTipoAlerta;
+    public void setIdHerramienta(int idHerramienta) {
+        this.idHerramienta = idHerramienta;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getMensaje() {
@@ -59,6 +79,14 @@ public class Alertas {
         this.mensaje = mensaje;
     }
 
+    public Timestamp getFechaGeneracion() {
+        return fechaGeneracion;
+    }
+
+    public void setFechaGeneracion(Timestamp fechaGeneracion) {
+        this.fechaGeneracion = fechaGeneracion;
+    }
+
     public String getEstado() {
         return estado;
     }
@@ -67,22 +95,4 @@ public class Alertas {
         this.estado = estado;
     }
 
-    public int getIdUsuarioResponsable() {
-        return idUsuarioResponsable;
-    }
-
-    public void setIdUsuarioResponsable(int idUsuarioResponsable) {
-        this.idUsuarioResponsable = idUsuarioResponsable;
-    }
-
-    public String getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public void setFechaCreacion(String fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
-
 }
-
-

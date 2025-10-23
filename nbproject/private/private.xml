@@ -9,16 +9,19 @@
             <file>file:/C:/Users/chris/OneDrive/Documentos/NetBeansProjects/SistemaMantenimientoPredictivo/src/java/Modelo/TiposAlertas.java</file>
             <file>file:/C:/Users/chris/OneDrive/Documentos/NetBeansProjects/SistemaMantenimientoPredictivo/src/java/Controladores/MaquinaServlet.java</file>
             <file>file:/C:/Users/chris/OneDrive/Documentos/NetBeansProjects/SistemaMantenimientoPredictivo/src/java/Modelo/TiposActivos.java</file>
+            <file>file:/C:/Users/chris/OneDrive/Documentos/NetBeansProjects/SistemaMantenimientoPredictivo/web/vistasAdmin/maquinas.jsp</file>
             <file>file:/C:/Users/chris/OneDrive/Documentos/NetBeansProjects/SistemaMantenimientoPredictivo/src/java/Modelo/Combustibles.java</file>
             <file>file:/C:/Users/chris/OneDrive/Documentos/NetBeansProjects/SistemaMantenimientoPredictivo/src/java/Controladores/LoginServlet.java</file>
             <file>file:/C:/Users/chris/OneDrive/Documentos/NetBeansProjects/SistemaMantenimientoPredictivo/src/java/Modelo/TiposMantenimientos.java</file>
+            <file>file:/C:/Users/chris/OneDrive/Documentos/NetBeansProjects/SistemaMantenimientoPredictivo/src/java/Controladores/ActivoServlet.java</file>
             <file>file:/C:/Users/chris/OneDrive/Documentos/NetBeansProjects/SistemaMantenimientoPredictivo/src/java/ModeloDAO/UsuarioDAO.java</file>
+            <file>file:/C:/Users/chris/OneDrive/Documentos/NetBeansProjects/SistemaMantenimientoPredictivo/src/java/Modelo/Activo.java</file>
             <file>file:/C:/Users/chris/OneDrive/Documentos/NetBeansProjects/SistemaMantenimientoPredictivo/src/java/Modelo/Maquina.java</file>
             <file>file:/C:/Users/chris/OneDrive/Documentos/NetBeansProjects/SistemaMantenimientoPredictivo/src/java/Modelo/Conexion.java</file>
+            <file>file:/C:/Users/chris/OneDrive/Documentos/NetBeansProjects/SistemaMantenimientoPredictivo/src/java/ModeloDAO/ActivoDAO.java</file>
             <file>file:/C:/Users/chris/OneDrive/Documentos/NetBeansProjects/SistemaMantenimientoPredictivo/src/java/Modelo/Roles.java</file>
             <file>file:/C:/Users/chris/OneDrive/Documentos/NetBeansProjects/SistemaMantenimientoPredictivo/web/vistasAdmin/inicio.jsp</file>
             <file>file:/C:/Users/chris/OneDrive/Documentos/NetBeansProjects/SistemaMantenimientoPredictivo/web/index.jsp</file>
-            <file>file:/C:/Users/chris/OneDrive/Documentos/NetBeansProjects/SistemaMantenimientoPredictivo/src/java/Modelo/Activos.java</file>
             <file>file:/C:/Users/chris/OneDrive/Documentos/NetBeansProjects/SistemaMantenimientoPredictivo/src/java/Modelo/Alertas.java</file>
             <file>file:/C:/Users/chris/OneDrive/Documentos/NetBeansProjects/SistemaMantenimientoPredictivo/web/vistasAdmin/Empleados.jsp</file>
             <file>file:/C:/Users/chris/OneDrive/Documentos/NetBeansProjects/SistemaMantenimientoPredictivo/src/java/Controladores/TestConexionServlet.java</file>

@@ -1,19 +1,14 @@
 
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
-<%@ page import="Modelo.Maquina" %>
-<%@ page import="Controladores.MaquinaServlet" %>
+<%@ page import="Modelo.Activo" %>
 <%@ include file="layout.jsp" %>
 <%
     request.setAttribute("titulo", "Listado de Máquinas");
         
 
-    List<Maquina> maquinas = (List<Maquina>) request.getAttribute("maquinas");
+    List<Activo> activos = (List<Activo>) request.getAttribute("activos");
 
-    
-    if (maquinas == null) {
-        maquinas = MaquinaServlet.getMaquinas();
-    }
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -31,112 +26,107 @@
     <div class="container my-4">
         
         <div class="mb-4">
-            <h1 class="h3 d-inline">Máquinas</h1>
-            
-            <button type="button" class="btn btn-sm btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#modalAgregarMaquina">
-                + Agregar Máquina
+            <h1 class="h3 d-inline">Vehículos</h1>
+
+            <button type="button" class="btn btn-sm btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#modalAgregarActivo">
+                + Agregar Vehículo
             </button>
         </div>
         
-        <div class="modal fade" id="modalAgregarMaquina" tabindex="-1" aria-labelledby="modalAgregarMaquinaLabel" aria-hidden="true">
+        <div class="modal fade" id="modalAgregarActivo" tabindex="-1" aria-labelledby="modalAgregarActivoLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
-              <form action="<%= request.getContextPath() %>/MaquinaServlet" method="post">
+              <form action="<%= request.getContextPath() %>/ActivoServlet" method="post">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="modalAgregarMaquinaLabel">Agregar Nueva Máquina</h5>
+                  <h5 class="modal-title" id="modalAgregarActivoLabel">Agregar Nuevo Vehículo</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
 
-                <div class="modal-body">
-                  <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre de la máquina</label>
+                <div class="modal-body row g-3">
+                  <input type="hidden" name="accion" value="agregar">
+
+                  <div class="col-md-6">
+                    <label for="placa" class="form-label">Placa</label>
+                    <input type="text" class="form-control" id="placa" name="placa" required>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="codigoInterno" class="form-label">Código Interno</label>
+                    <input type="text" class="form-control" id="codigoInterno" name="codigoInterno" required>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="nombre" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="nombre" name="nombre" required>
                   </div>
 
-                  <div class="mb-3">
+                  <div class="col-md-6">
+                    <label for="idTipoActivo" class="form-label">Tipo de Activo</label>
+                    <select class="form-select" id="idTipoActivo" name="idTipoActivo" required>
+                      <option value="1">Vehículo</option>
+                      <option value="2">Maquinaria</option>
+                      <option value="3">Equipo</option>
+                    </select>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="marca" class="form-label">Marca</label>
+                    <input type="text" class="form-control" id="marca" name="marca">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="modelo" class="form-label">Modelo</label>
+                    <input type="text" class="form-control" id="modelo" name="modelo">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="anio" class="form-label">Año</label>
+                    <input type="number" class="form-control" id="anio" name="anio">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="capacidadPasajeros" class="form-label">Capacidad de Pasajeros</label>
+                    <input type="number" class="form-control" id="capacidadPasajeros" name="capacidadPasajeros">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="kilometrajeActual" class="form-label">Kilometraje Actual (km)</label>
+                    <input type="number" step="0.1" class="form-control" id="kilometrajeActual" name="kilometrajeActual" required>
+                  </div>
+
+                  <div class="col-md-6">
                     <label for="estado" class="form-label">Estado</label>
-                    <select class="form-select" id="estado" name="estado" required>
+                    <select class="form-select" id="estado" name="estado">
                       <option value="Activo">Activo</option>
                       <option value="Mantenimiento">Mantenimiento</option>
                       <option value="Inactivo">Inactivo</option>
                     </select>
                   </div>
-
-                  <div class="mb-3">
-                    <label for="antiguedad" class="form-label">Antigüedad (%)</label>
-                    <input type="number" class="form-control" id="antiguedad" name="antiguedad" min="0" max="100" required>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="imagen" class="form-label">URL de Imagen</label>
-                    <input type="text" class="form-control" id="imagen" name="imagen">
-                  </div>
-                    
-                  <div class="mb-3"> 
-                    <label for="kilometraje" class="form-label">Kilometraje (km)</label>
-                    <input type="number" class="form-control" id="kilometraje" name="kilometraje" required>
-                  </div>
-
-                  <div class="mb-3">   
-                    <label for="tipoCombustible" class="form-label">Tipo de Combustible</label>
-                    <select class="form-select" id="tipoCombustible" name="tipoCombustible" required>
-                      <option value="GNV">Gas Natural Vehicular (GNV)</option>
-                      <option value="Diesel">Diésel</option>
-                    </select>
-                  </div>
-                    
-                  <div class="mb-3">
-                    <label for="horasUso" class="form-label">Horas de uso</label>
-                    <input type="number" class="form-control" id="horasUso" name="horasUso" min="0" required>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="ultimaActualizacion" class="form-label">Última actualización</label>
-                    <input type="date" class="form-control" id="ultimaActualizacion" name="ultimaActualizacion" required>
-                  </div> 
-                    
                 </div>
 
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                  <button type="submit" class="btn btn-primary" name="accion" value="agregar">Guardar</button>
+                  <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
               </form>
             </div>
           </div>
         </div>
 
+       <!-- LISTA DE VEHÍCULOS -->
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-                <%
-                    if (maquinas != null && !maquinas.isEmpty()) {
-                        for (Maquina m : maquinas) {
-                            
-                            // Determinar imagen (usando un ícono de vehículo por defecto si no hay URL)
-                            String vehicleIconClass = (m.getImagen() != null && !m.getImagen().trim().isEmpty())
-                                                            ? "" // No es un ícono, es una imagen
-                                                            : "bi bi-truck vehicle-icon-placeholder"; // Bootstrap Icon (se necesita importar)
-                            
-                            String img = (vehicleIconClass.isEmpty())
-                                            ? m.getImagen()
-                                            : request.getContextPath() + "/img/placeholder.png"; // Usar el placeholder si no es un ícono
-
-                            // Lógica de color de estado
-                            String estadoColorClass = "status-badge-secondary"; // Clase por defecto
-                            String estadoText = "Mantenimiento";
-                            if ("Activo".equals(m.getEstado())) {
-                                estadoColorClass = "status-badge-success";
-                                estadoText = "Activo";
-                            } else if ("Inactivo".equals(m.getEstado())) {
-                                estadoColorClass = "status-badge-danger";
-                                estadoText = "Inactivo";
-                            }
-                            
-                            // Asumiendo que Maquina tiene los métodos: getNombre(), getUbicacion(), getModelo(), getConductor(), getEficiencia(), getCombustible(), getKilometraje()
-                            // Nota: En tu JSP original usas getAntiguedad() como un porcentaje. Aquí usaré un valor fijo de ejemplo (97.8) para la Eficiencia.
-                            double eficiencia = 97.8; // Valor de ejemplo, ajusta a tu modelo
-                            int combustible = 78; // Valor de ejemplo, ajusta a tu modelo
-                            String ubicacion = "Depot Central - Taller A"; // Valor de ejemplo, ajusta a tu modelo
-                %>
+            <%
+                if (activos != null && !activos.isEmpty()) {
+                    for (Activo a : activos) {
+                        String estadoColorClass = "status-badge-secondary";
+                        if ("Activo".equalsIgnoreCase(a.getEstado())) estadoColorClass = "status-badge-success";
+                        else if ("Mantenimiento".equalsIgnoreCase(a.getEstado())) estadoColorClass = "status-badge-warning";
+                        else if ("Inactivo".equalsIgnoreCase(a.getEstado())) estadoColorClass = "status-badge-danger";
+                        
+                        String ubicacion = "Taller Central";
+                        double eficiencia = 95.5;
+                        int combustible = 80;
+            %>
                 <div class="col">
                     <div class="custom-machine-card shadow-sm p-3">
                         
@@ -146,16 +136,16 @@
                                     <i class="bi bi-truck vehicle-icon-placeholder"></i>
                                 </div>
                                 <div>
-                                    <h5 class="machine-id mb-0"><%= m.getNombre() %></h5>
-                                    <small class="text-muted"><%= m.getModelo() %> (Distribución B)</small>
+                                    <h5 class="machine-id mb-0"><%= a.getNombre() %></h5>
+                                    <small class="text-muted"><%= a.getModelo() %> (Distribución B)</small>
                                 </div>
                             </div>
-                            <span class="status-badge <%= estadoColorClass %>"><%= m.getEstado() %></span>
+                            <span class="status-badge <%= estadoColorClass %>"><%= a.getEstado() %></span>
                         </div>
 
                         <div class="mb-3 machine-detail-group">
                             <p class="mb-1"><i class="bi bi-geo-alt-fill me-2"></i><%= ubicacion %></p>
-                            <p class="mb-0"><i class="bi bi-person-fill me-2"></i>Conductor: <strong><%= m.getConductor() %></strong></p>
+                            <p class="mb-0"><i class="bi bi-person-fill me-2"></i>Conductor: <strong><%= a.getConductor() %></strong></p>
                         </div>
                         
                         <div class="metrics-grid">
@@ -173,7 +163,7 @@
 
                             <div class="metric-item">
                                 <i class="bi bi-clock metric-icon-secondary"></i>
-                                <h4 class="metric-value text-secondary mb-0"><%= String.format("%,d", m.getKilometraje()) %> km</h4>
+                                <h4 class="metric-value text-secondary mb-0"><%= String.format("%,d", a.getKilometraje()) %> km</h4>
                                 <small class="metric-label text-muted">km</small>
                             </div>
                         </div>

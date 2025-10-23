@@ -1,11 +1,6 @@
-<%-- 
-    Document   : seguridad
-    Created on : 30 sept 2025, 20:32:36
-    Author     : kristhor
---%>
-
 <%@page import="jakarta.servlet.http.HttpSession"%>
 <%
+    // Evitar caché del navegador
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     response.setHeader("Pragma", "no-cache");
     response.setDateHeader("Expires", 0);
@@ -14,23 +9,46 @@
     String contextPath = request.getContextPath();
     String requestURI = request.getRequestURI();
 
-    if (sesion == null || sesion.getAttribute("rol") == null) {
-        response.sendRedirect(contextPath + "/index.jsp"); // No ha iniciado sesiÃ³n
+    // Validar sesión activa
+    if (sesion == null || sesion.getAttribute("idRol") == null) {
+        response.sendRedirect(contextPath + "/index.jsp");
         return;
     }
 
-    String rol = (String) sesion.getAttribute("rol");
+    // Obtener rol (numérico)
+    int idRol = (int) sesion.getAttribute("idRol");
 
+    // Verificar rutas accedidas
     boolean accedeAdmin = requestURI.contains("/vistasAdmin/");
-    boolean accedeEmpleado = requestURI.contains("/vistasEmpleado/");
+    boolean accedeConductor = requestURI.contains("/vistasEmpleado/");
+    boolean accedeMecanico = requestURI.contains("/vistasMecanico/");
 
-    if ("administrador".equals(rol) && accedeEmpleado) {
-        response.sendRedirect(contextPath + "/vistasAdmin/admin.jsp");
-        return;
-    }
+    // Lógica de restricción de acceso
+    switch (idRol) {
+        case 1: // ADMINISTRADOR
+            if (accedeConductor || accedeMecanico) {
+                response.sendRedirect(contextPath + "/vistasAdmin/inicio.jsp");
+                return;
+            }
+            break;
 
-    if ("conductor".equals(rol) && accedeAdmin) {
-        response.sendRedirect(contextPath + "/vistasEmpleado/empleadoMaquinas.jsp");
-        return;
+        case 2: // CONDUCTOR
+            if (accedeAdmin || accedeMecanico) {
+                response.sendRedirect(contextPath + "/vistasEmpleado/empleadoMaquinas.jsp");
+                return;
+            }
+            break;
+
+        case 3: // MECÁNICO
+            if (accedeAdmin || accedeConductor) {
+                response.sendRedirect(contextPath + "/vistasMecanico/mecanico.jsp");
+                return;
+            }
+            break;
+
+        default:
+            // Rol desconocido
+            response.sendRedirect(contextPath + "/index.jsp");
+            return;
     }
 %>

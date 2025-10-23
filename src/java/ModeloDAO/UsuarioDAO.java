@@ -8,49 +8,54 @@ package ModeloDAO;
  *
  * @author kristhor
  */
-import Modelo.*;
-import java.sql.*;
+import Modelo.usuarios;
+import Modelo.Conexion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class UsuarioDAO {
+
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
-    Conexion cn = new Conexion();
 
-    public Usuario validar(String correo, String password) {
-        Usuario usuario = null;
-        String sql = "SELECT u.*, r.nombreRol FROM usuarios u INNER JOIN roles r ON u.idRol = r.idRol WHERE u.correo=? AND u.password=?";
+    public usuarios validarUsuarioPorCorreo(String correo, String contrasena) {
+        usuarios u = null;
+        String sql = """
+            SELECT u.*, r.nombreRol
+            FROM usuarios u
+            INNER JOIN roles r ON u.idRol = r.idRol
+            WHERE u.correo = ? AND u.contrasena = ? AND u.estado = 'Activo'
+        """;
+
         try {
-            con = cn.getConexion();
+            con = Conexion.getConexion();
             ps = con.prepareStatement(sql);
             ps.setString(1, correo);
-            ps.setString(2, password);
+            ps.setString(2, contrasena);
             rs = ps.executeQuery();
-            
-            System.out.println("🔍 Buscando usuario con correo: " + correo + " y password: " + password);
-
 
             if (rs.next()) {
-                usuario = new Usuario();
-                usuario.setIdUsuario(rs.getInt("idUsuario"));
-                usuario.setNombre(rs.getString("nombre"));
-                usuario.setCorreo(rs.getString("correo"));
-                usuario.setPassword(rs.getString("password"));
-                usuario.setIdRol(rs.getInt("idRol"));
-                usuario.setFechaRegistro(rs.getString("fechaRegistro"));
-
-                Roles rol = new Roles(); // 👈 usamos tu clase
-                rol.setIdRol(rs.getInt("idRol"));
-                rol.setNombreRol(rs.getString("nombreRol"));
-                usuario.setRol(rol);
-                
-                System.out.println("✅ Usuario encontrado: " + rs.getString("nombre") + " - Rol: " + rs.getString("nombreRol"));
-
+                u = new usuarios(
+                        rs.getInt("idUsuario"),
+                        rs.getInt("idRol"),
+                        rs.getString("nombreCompleto"),
+                        rs.getString("usuario"),
+                        rs.getString("contrasena"),
+                        rs.getString("correo"),
+                        rs.getString("telefono"),
+                        rs.getString("estado"),
+                        rs.getTimestamp("fechaRegistro")
+                );
+                // Puedes agregar un campo extra si lo tienes en el modelo:
+                // u.setNombreRol(rs.getString("nombreRol"));
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Error en validarUsuarioPorCorreo: " + e.getMessage());
         }
-        return usuario;
+
+        return u;
     }
 }

@@ -8,15 +8,21 @@ package Modelo;
  *
  * @author Raidth
  */
-public class Rutas {
+public class rutas {
     private int idRuta;
-    private String nombreRuta;
-    private String descripcion;
+    private String origen;
+    private String destino;
+    private double distanciaKm;
+    private double tiempoEstimado;
+    private String tipoRuta;
 
-    public Rutas(int idRuta, String nombreRuta, String descripcion) {
+    public rutas(int idRuta, String origen, String destino, double distanciaKm, double tiempoEstimado, String tipoRuta) {
         this.idRuta = idRuta;
-        this.nombreRuta = nombreRuta;
-        this.descripcion = descripcion;
+        this.origen = origen;
+        this.destino = destino;
+        this.distanciaKm = distanciaKm;
+        this.tiempoEstimado = tiempoEstimado;
+        this.tipoRuta = tipoRuta;
     }
 
     public int getIdRuta() {
@@ -27,20 +33,44 @@ public class Rutas {
         this.idRuta = idRuta;
     }
 
-    public String getNombreRuta() {
-        return nombreRuta;
+    public String getOrigen() {
+        return origen;
     }
 
-    public void setNombreRuta(String nombreRuta) {
-        this.nombreRuta = nombreRuta;
+    public void setOrigen(String origen) {
+        this.origen = origen;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getDestino() {
+        return destino;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDestino(String destino) {
+        this.destino = destino;
     }
-    
+
+    public double getDistanciaKm() {
+        return distanciaKm;
+    }
+
+    public void setDistanciaKm(double distanciaKm) {
+        this.distanciaKm = distanciaKm;
+    }
+
+    public double getTiempoEstimado() {
+        return tiempoEstimado;
+    }
+
+    public void setTiempoEstimado(double tiempoEstimado) {
+        this.tiempoEstimado = tiempoEstimado;
+    }
+
+    public String getTipoRuta() {
+        return tipoRuta;
+    }
+
+    public void setTipoRuta(String tipoRuta) {
+        this.tipoRuta = tipoRuta;
+    }
+
 }

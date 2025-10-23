@@ -6,19 +6,22 @@ package Modelo;
 
 /**
  *
- * @author kristhor
+ * @author Raidth
  */
-public class Roles {
+public class roles {
     private int idRol;
     private String nombreRol;
-    
-    public Roles() {}
+    private String descripcion;
 
-    public Roles(int idRol, String nombreRol) {
+    public roles() {
+    }
+        
+    public roles(int idRol, String nombreRol, String descripcion) {
         this.idRol = idRol;
         this.nombreRol = nombreRol;
+        this.descripcion = descripcion;
     }
-    
+
     public int getIdRol() {
         return idRol;
     }
@@ -34,4 +37,13 @@ public class Roles {
     public void setNombreRol(String nombreRol) {
         this.nombreRol = nombreRol;
     }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
 }

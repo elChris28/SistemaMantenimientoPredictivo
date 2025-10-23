@@ -1,11 +1,15 @@
 package Controladores;
 
-import Modelo.Usuario;
 import ModeloDAO.UsuarioDAO;
+import Modelo.usuarios;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
+
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -13,33 +17,39 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String correo = request.getParameter("correo");
-        String password = request.getParameter("password");
+        String contrasena = request.getParameter("password");
 
         UsuarioDAO dao = new UsuarioDAO();
-        Usuario user = dao.validar(correo, password);
-        
-        String context = request.getContextPath();
+        usuarios u = dao.validarUsuarioPorCorreo(correo, contrasena);
 
-        if (user != null) {
-            HttpSession sesion = request.getSession();
-            sesion.setAttribute("usuario", user);
+        if (u != null) {
+            HttpSession session = request.getSession();
+            session.setAttribute("usuario", u);
+            session.setAttribute("idRol", u.getIdRol()); // 👈 ESTA LÍNEA ES CLAVE
 
-            String rolNombre = user.getRol().getNombreRol();
-            
-            sesion.setAttribute("rol", rolNombre.toLowerCase());           
+            int rol = u.getIdRol();
 
-            // Redirección según rol
-            if ("Administrador".equalsIgnoreCase(rolNombre)) {
-                response.sendRedirect(context + "/vistasAdmin/inicio.jsp");
-            } else if ("Conductor".equalsIgnoreCase(rolNombre)) {
-                response.sendRedirect(context + "/vistasEmpleado/empleadoMaquinas.jsp");
-            } else {
-                response.sendRedirect("login.jsp?error=rol");
+            // Redirecciones según rol
+            switch (rol) {
+                case 1:
+                    response.sendRedirect("vistasAdmin/inicio.jsp");
+                    break;
+                case 2:
+                    response.sendRedirect("vistasEmpleado/empleadoMaquinas.jsp");
+                    break;
+                case 3:
+                    response.sendRedirect("vistasMecanico/mecanico.jsp");
+                    break;
+                default:
+                    response.sendRedirect("index.jsp");
+                    break;
             }
+
         } else {
-            response.sendRedirect("login.jsp?error=credenciales");
+            request.setAttribute("error", "Correo o contraseña incorrectos.");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
 }

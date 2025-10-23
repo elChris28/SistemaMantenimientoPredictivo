@@ -13,7 +13,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conexion {
-    private static final String URL = "jdbc:mysql://localhost:3306/mantenimientopredictivo";
+    private static final String URL = "jdbc:mysql://localhost:3306/mantenimiento_predictivo2";
     private static final String USER = "root"; // cambia si tu usuario es distinto
     private static final String PASSWORD = "abc123"; // pon tu contraseña si tienes
 
