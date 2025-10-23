@@ -19,6 +19,7 @@ public class alertas {
     private String mensaje;
     private Timestamp fechaGeneracion;
     private String estado;
+    jean
 
     public alertas(int idAlerta, int idVehiculo, int idHerramienta, int idUsuario, String tipo, String mensaje, Timestamp fechaGeneracion, String estado) {
         this.idAlerta = idAlerta;
